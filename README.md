@@ -2,6 +2,10 @@
 ## Assignment 10
 
 
+### Technologies
+- React + Vite
+- Tailwind
+- Daisy UI
 
 # React + Vite
 
