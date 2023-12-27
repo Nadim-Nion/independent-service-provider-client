@@ -1,4 +1,4 @@
-# Bridal Photography (Independent Service Provider)
+# Bridal Portraiture (Independent Service Provider)
 ## Assignment 10
 
 
