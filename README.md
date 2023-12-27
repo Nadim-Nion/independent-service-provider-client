@@ -4,6 +4,7 @@
 
 ### Technologies
 - React + Vite
+- React Router
 - Tailwind
 - Daisy UI
 
