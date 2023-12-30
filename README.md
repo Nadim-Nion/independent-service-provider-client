@@ -1,4 +1,4 @@
-# Bridal Portraiture (Independent Service Provider)
+# Bridal Portraiture - Client Side (Independent Service Provider)
 ## Assignment 10
 
 
