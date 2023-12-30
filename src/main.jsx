@@ -12,12 +12,14 @@ import Checkout from './components/Checkout/Checkout.jsx';
 import Blogs from './components/Blogs/Blogs.jsx';
 import AboutMe from './components/AboutMe/AboutMe.jsx';
 import Login from './components/Login/Login.jsx';
+import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
