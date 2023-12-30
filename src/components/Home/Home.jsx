@@ -1,14 +1,17 @@
 import React from 'react';
-import image1 from '../../assets/images/image 1.jpg';
-import image2 from '../../assets/images/image 2.jpg';
-import image3 from '../../assets/images/image 3.jpg';
-import image4 from '../../assets/images/image 4.jpg';
-import image5 from '../../assets/images/image 5.jpg';
+import image1 from '../../assets/images/image 1.png';
+import image2 from '../../assets/images/image 2.png';
+import image3 from '../../assets/images/image 3.png';
+import image4 from '../../assets/images/image 4.png';
+import image5 from '../../assets/images/image 5.png';
+import Service from '../service/Service';
+import Footer from '../Footer/Footer';
 
 const Home = () => {
     return (
         <div>
-            <div className="carousel w-full h-screen">
+            {/* Carousel  */}
+            <div className="carousel w-full h-full">
                 <div id="slide1" className="carousel-item relative w-full">
                     <img src={image1} className="w-full" />
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -45,6 +48,9 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            <Service></Service>
+            <Footer></Footer>
         </div>
     );
 };
