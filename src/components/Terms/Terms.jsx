@@ -9,7 +9,7 @@ const Terms = () => {
                 <br /> <br />
 
                 1. Acceptance of Terms
-                By accessing or using The Dragon News Portal, you agree to comply with and be bound by these terms and conditions. If you do not agree with any part of these terms, you may not use the Portal. <br />
+                By accessing or using Bridal Portraiture, you agree to comply with and be bound by these terms and conditions. If you do not agree with any part of these terms, you may not use the Portal. <br />
 
                 2. User Eligibility
                 The Portal is intended for users who are at least 18 years old. By using the Portal, you confirm that you are at least 18 years of age. <br />
@@ -44,7 +44,7 @@ const Terms = () => {
                 12. Contact Information
                 For questions or concerns regarding these terms and conditions, please contact us at contact@thedragonnews.com
 
-                By using The Dragon News Portal, you agree to abide by these terms and conditions.</p> <br />
+                By using Bridal Portraiture, you agree to abide by these terms and conditions.</p> <br />
 
             <p className='text-dark'>
                 Go back to
