@@ -16,6 +16,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 import Register from './components/Register/Register.jsx';
 import Terms from './components/Terms/Terms.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
+import PrivateRoute from './route/PrivateRoute.jsx';
 
 
 const router = createBrowserRouter([
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <Checkout></Checkout>
+        element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
       },
       {
         path: "/blogs",

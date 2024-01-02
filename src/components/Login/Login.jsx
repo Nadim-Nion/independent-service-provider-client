@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import { space } from 'postcss/lib/list';
 
@@ -10,6 +10,11 @@ const Login = () => {
     const [toast, setToast] = useState(false);
     const [show, setShow] = useState(false);
     const emailRef = useRef();
+    const navigate = useNavigate();
+    const location = useLocation();
+    // console.log(location);
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = event => {
         event.preventDefault();
@@ -31,6 +36,7 @@ const Login = () => {
                 console.log(loggedUser);
                 form.reset();
                 setSuccess('user logged-in done');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 setError(error.message);
