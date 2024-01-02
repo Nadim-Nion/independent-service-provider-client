@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Register = () => {
-    const { createUser, updateUserData } = useContext(AuthContext);
+    const { createUser, updateUserData, sendVerificationToEmail } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [toast, setToast] = useState(false);
 
     const handleRegister = event => {
         event.preventDefault();
@@ -29,7 +30,14 @@ const Register = () => {
                 console.log(newUser);
                 form.reset();
                 setSuccess('new user created');
-                updateUserData(newUser, name)
+                updateUserData(newUser, name);
+                sendVerificationToEmail(newUser)
+                    .then(() => {
+                        setToast(true);
+                    })
+                    .catch(error => {
+                        setError(error.message);
+                    })
             })
             .catch(error => {
                 console.log(error);
@@ -44,6 +52,7 @@ const Register = () => {
             .catch(error => {
                 setError(error.message);
             })
+
     }
 
     return (
@@ -100,6 +109,16 @@ const Register = () => {
                     <button className="btn btn-link ps-2">Login</button>
                 </Link>
             </p>
+            <div>
+                {
+                    toast &&
+                    <div className="toast toast-top toast-end">
+                        <div className="alert alert-info">
+                            <span>Check your email</span>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     );
 };
