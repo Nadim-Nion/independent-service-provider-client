@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import { space } from 'postcss/lib/list';
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn, resetPassword } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [toast, setToast] = useState(false);
+    const [show, setShow] = useState(false);
+    const emailRef = useRef();
 
     const handleLogin = event => {
         event.preventDefault();
@@ -33,6 +37,19 @@ const Login = () => {
             })
     }
 
+
+    const handleResetPassword = () => {
+        const email = emailRef.current.value;
+
+        resetPassword(email)
+            .then(() => {
+                setToast(true);
+            })
+            .catch(error => {
+                setError(error);
+            })
+    }
+
     return (
         <div className='w-96 mx-auto mt-16'>
             <h2 className='text-4xl font-semibold mb-4'>Login your account</h2>
@@ -41,7 +58,7 @@ const Login = () => {
                 <div>
                     <label>Email Address</label>
                     <br />
-                    <input className='mt-4' type="email" name="email" id="email" placeholder='Your Email' required />
+                    <input ref={emailRef} className='mt-4' type="email" name="email" id="email" placeholder='Your Email' required />
                 </div>
 
                 <br />
@@ -49,7 +66,14 @@ const Login = () => {
                 <div>
                     <label>Password</label>
                     <br />
-                    <input className='mt-4' type="password" name="password" id="password" placeholder='Your Password' required />
+                    <input className='my-4' type={show ? "text" : "password"} name="password" id="password" placeholder='Your Password' required />
+                    <p onClick={() => setShow(!show)}>
+                        <small>
+                            {
+                                show ? <span>Hide Password</span> : <span>Show Password</span>
+                            }
+                        </small>
+                    </p>
                 </div>
 
                 <br />
@@ -65,7 +89,20 @@ const Login = () => {
                 <button className="btn btn-primary">Login</button>
             </form>
             <p className='my-2 text-green-700'>{success}</p>
-            <p className='mt-2 text-red-700'>{error}</p>
+            <p className='my-2 text-red-700'>{error}</p>
+            <p>
+                Forget your password? Please<button onClick={handleResetPassword} className="btn btn-link ps-2">Reset Password</button>
+            </p>
+            <div>
+                {
+                    toast &&
+                    <div className="toast toast-top toast-end">
+                        <div className="alert alert-info">
+                            <span>Check your email</span>
+                        </div>
+                    </div>
+                }
+            </div>
             <p>
                 Do not have any account?
                 <Link to="/register">
