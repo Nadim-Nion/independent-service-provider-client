@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
+
+    const handleRegister = event => {
+        event.preventDefault();
+
+        const form = event.target;
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log(name, photo, email, password);
+
+        // Clear the previous error message
+        setError('');
+
+        createUser(email, password)
+            .then(result => {
+                const newUser = result.user;
+                console.log(newUser);
+                form.reset();
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <div className='w-96 mx-auto mt-16'>
             <h2 className='text-4xl font-semibold mb-4'>Register your account</h2>
 
-            <form>
+            <form onSubmit={handleRegister}>
                 <div>
                     <label>Name</label>
                     <br />
@@ -37,7 +65,7 @@ const Register = () => {
 
                 <div>
                     <input type="checkbox" name="checkbox" id="checkbox" />
-                    <label className='ps-2' for="check">Accept
+                    <label className='ps-2' htmlFor="check">Accept
                         <Link to="/terms">
                             <button className="btn btn-link ps-2">Terms and Conditions</button>
                         </Link>
@@ -48,6 +76,7 @@ const Register = () => {
 
                 <button className="btn btn-primary">Register</button>
             </form>
+            <p className='mt-2 text-red-700'>{error}</p>
             <p>
                 Already have an account?
                 <Link to="/login">

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -14,7 +17,17 @@ const Navbar = () => {
                         <li><Link to="/checkout">Checkout</Link></li>
                         <li><Link to="/blogs">Blogs</Link></li>
                         <li><Link to="/about">About Me</Link></li>
-                        <li><Link to="/login">Login</Link></li>
+                        <li className="flex items-start">
+                            {
+                                user ?
+                                    <button className="btn btn-ghost">Log out</button>
+                                    :
+                                    <Link to="/login">
+                                        <button className="btn btn-ghost">Login</button>
+                                    </Link>
+                            }
+                        </li>
+                        <li>{user?.email}</li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">Bridal Portraiture</a>
@@ -25,7 +38,17 @@ const Navbar = () => {
                     <li><Link to="/checkout">Checkout</Link></li>
                     <li><Link to="/blogs">Blogs</Link></li>
                     <li><Link to="/about">About Me</Link></li>
-                    <li><Link to="/login">Login</Link></li>
+                    <li>
+                        {
+                            user ?
+                                <button className="btn btn-ghost">Logout</button>
+                                :
+                                <Link to="/login">
+                                    <button className="btn btn-ghost">Login</button>
+                                </Link>
+                        }
+                    </li>
+                    <li className='mt-2 ps-2'>{user?.email}</li>
                 </ul>
             </div>
         </div>
