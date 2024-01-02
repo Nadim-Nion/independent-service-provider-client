@@ -5,6 +5,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 const Login = () => {
     const { signIn } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleLogin = event => {
         event.preventDefault();
@@ -17,11 +18,15 @@ const Login = () => {
         // Clear the previous error message
         setError('');
 
+        // Clear the previous success message
+        setSuccess('');
+
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 form.reset();
+                setSuccess('user logged-in done');
             })
             .catch(error => {
                 setError(error.message);
@@ -59,6 +64,7 @@ const Login = () => {
                 {/* <input type="submit" value="Login" /> */}
                 <button className="btn btn-primary">Login</button>
             </form>
+            <p className='my-2 text-green-700'>{success}</p>
             <p className='mt-2 text-red-700'>{error}</p>
             <p>
                 Do not have any account?

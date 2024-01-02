@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserData } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleRegister = event => {
         event.preventDefault();
@@ -19,14 +20,29 @@ const Register = () => {
         // Clear the previous error message
         setError('');
 
+        // Clear the previous success message
+        setSuccess('');
+
         createUser(email, password)
             .then(result => {
                 const newUser = result.user;
                 console.log(newUser);
                 form.reset();
+                setSuccess('new user created');
+                updateUserData(newUser, name)
             })
             .catch(error => {
                 console.log(error);
+            })
+
+        updateUserData({
+            displayName: name
+        })
+            .then(() => {
+                console.log("user name updated");
+            })
+            .catch(error => {
+                setError(error.message);
             })
     }
 
@@ -76,6 +92,7 @@ const Register = () => {
 
                 <button className="btn btn-primary">Register</button>
             </form>
+            <p className='my-2 text-green-700'>{success}</p>
             <p className='mt-2 text-red-700'>{error}</p>
             <p>
                 Already have an account?
