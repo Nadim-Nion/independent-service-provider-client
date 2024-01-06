@@ -7,6 +7,7 @@ const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [toast, setToast] = useState(false);
+    const [accepted, setAccepted] = useState(false);
 
     const handleRegister = event => {
         event.preventDefault();
@@ -55,6 +56,11 @@ const Register = () => {
 
     }
 
+
+    const handleAccepted = event => {
+        setAccepted(event.target.checked);
+    }
+
     return (
         <div className='w-96 mx-auto mt-16'>
             <h2 className='text-4xl font-semibold mb-4'>Register your account</h2>
@@ -89,7 +95,7 @@ const Register = () => {
                 <br />
 
                 <div>
-                    <input type="checkbox" name="checkbox" id="checkbox" />
+                    <input onClick={handleAccepted} type="checkbox" name="checkbox" id="checkbox" />
                     <label className='ps-2' htmlFor="check">Accept
                         <Link to="/terms">
                             <button className="btn btn-link ps-2">Terms and Conditions</button>
@@ -99,7 +105,7 @@ const Register = () => {
 
                 <br />
 
-                <button className="btn btn-primary">Register</button>
+                <button disabled={!accepted} className="btn btn-primary">Register</button>
             </form>
             <p className='my-2 text-green-700'>{success}</p>
             <p className='mt-2 text-red-700'>{error}</p>
