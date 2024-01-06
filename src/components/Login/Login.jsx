@@ -9,6 +9,7 @@ const Login = () => {
     const [success, setSuccess] = useState('');
     const [toast, setToast] = useState(false);
     const [show, setShow] = useState(false);
+    const [accepted, setAccepted] = useState(false);
     const emailRef = useRef();
     const navigate = useNavigate();
     const location = useLocation();
@@ -56,6 +57,11 @@ const Login = () => {
             })
     }
 
+
+    const handleAccepted = event => {
+        setAccepted(event.target.checked);
+    }
+
     return (
         <div className='w-96 mx-auto mt-16'>
             <h2 className='text-4xl font-semibold mb-4'>Login your account</h2>
@@ -85,14 +91,14 @@ const Login = () => {
                 <br />
 
                 <div>
-                    <input type="checkbox" name="checkbox" id="checkbox" />
-                    <label className='ps-2' htmlFor="check">Check me out</label>
+                    <input onClick={handleAccepted} type="checkbox" name="checkbox" id="checkbox" />
+                    <label className='ps-2' htmlFor="check">Remember me</label>
                 </div>
 
                 <br />
 
                 {/* <input type="submit" value="Login" /> */}
-                <button className="btn btn-primary">Login</button>
+                <button disabled={!accepted} className="btn btn-primary">Login</button>
             </form>
             <p className='my-2 text-green-700'>{success}</p>
             <p className='my-2 text-red-700'>{error}</p>
