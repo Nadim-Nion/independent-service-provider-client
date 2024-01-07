@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import { space } from 'postcss/lib/list';
+import Social from '../Social/Social';
 
 const Login = () => {
     const { signIn, resetPassword } = useContext(AuthContext);
@@ -121,6 +122,7 @@ const Login = () => {
                     <button className="btn btn-link ps-2">Register</button>
                 </Link>
             </p>
+            <Social></Social>
         </div>
     );
 };

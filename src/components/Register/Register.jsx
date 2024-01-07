@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import Social from '../Social/Social';
 
 const Register = () => {
     const { createUser, updateUserData, sendVerificationToEmail } = useContext(AuthContext);
@@ -125,6 +126,7 @@ const Register = () => {
                     </div>
                 }
             </div>
+            <Social></Social>
         </div>
     );
 };
