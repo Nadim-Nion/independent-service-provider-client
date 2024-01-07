@@ -48,7 +48,8 @@ const Checkout = () => {
                 <button onClick={handleConfirm} className="btn btn-primary">Confirm</button>
 
                 {
-                    toast && <div className="toast toast-top toast-end">
+                    toast &&
+                    <div className="toast toast-top toast-end">
                         <div className="alert alert-info">
                             <span>Thank you for the booking</span>
                         </div>
