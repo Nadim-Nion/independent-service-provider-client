@@ -66,7 +66,7 @@ Bridal Portraiture strives to provide a seamless and secure platform for users t
 
 * Netlify:  https://bridal-portraiture-client-nion.netlify.app/ 
 
-* Surge:
+* Surge:  https://tasty-governor.surge.sh/
 
 ## Deployment
 
