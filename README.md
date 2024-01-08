@@ -64,9 +64,10 @@ Bridal Portraiture strives to provide a seamless and secure platform for users t
 
 * Firebase: https://independent-service-prov-4ed29.web.app/
 
-* Netlify:
+* Netlify:  https://bridal-portraiture-client-nion.netlify.app/ 
 
 * Surge:
+
 ## Deployment
 
 To deploy this project run
